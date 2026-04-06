@@ -5,6 +5,10 @@ __pycache__/
 # C extensions
 *.so
 
+cred.txt
+notebooks/
+local_s3
+
 # Distribution / packaging
 .Python
 env/
@@ -87,3 +91,9 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+
+notebooks/
+mlruns/
+models/
+
