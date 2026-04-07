@@ -13,15 +13,27 @@ from src.logger import logging
 # -------------------------------------------------------------------------------------
 # DagsHub + MLflow setup (KEEP mlflow=True)
 # -------------------------------------------------------------------------------------
-MLFLOW_TRACKING_URI = "https://dagshub.com/babatundejulius911/end-to-end-Nlp-Project.mlflow"
+# MLFLOW_TRACKING_URI = "https://dagshub.com/babatundejulius911/end-to-end-Nlp-Project.mlflow"
 
-dagshub.init(
-    repo_owner="babatundejulius911",
-    repo_name="end-to-end-Nlp-Project",
-    mlflow=True
-)
+# dagshub.init(
+#     repo_owner="babatundejulius911",
+#     repo_name="end-to-end-Nlp-Project",
+#     mlflow=True
+# )
 # -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
 
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "babatundejulius911"
+repo_name = "end-to-end-Nlp-Project"
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 
 def load_model(file_path: str):
     try:
