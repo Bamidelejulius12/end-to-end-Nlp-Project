@@ -96,4 +96,6 @@ target/
 notebooks/
 mlruns/
 models/
+reports/
+
 
